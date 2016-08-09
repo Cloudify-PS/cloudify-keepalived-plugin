@@ -1,0 +1,59 @@
+###########################################################
+## This Blueprint install keepalived deamon
+## on cloudify manager
+############################################################
+tosca_definitions_version: cloudify_dsl_1_3
+
+plugins:
+  keepalived:
+    executor: central_deployment_agent
+    source: https://github.com/Cloudify-PS/cloudify-keepalived-plugin/archive/dev.zip
+
+node_types:
+
+  keepalived.nodes.KeepAlived:
+    derived_from: cloudify.nodes.SoftwareComponent
+    properties:
+      state:
+        type: string
+      internal_ip:
+        type: string
+        default: { get_input: internal_ip }
+      broadcast:
+        type: string
+        default: { get_input: keepalived_broadcast }
+      group:
+        type: string
+        default: { get_input: group }
+      router_id:
+        type: string
+        default: { get_input: router_id }
+      priority:
+        type: string
+        default: 50
+      advert_interval:
+        type: string
+        default: 1
+    interfaces:
+      cloudify.interfaces.lifecycle:
+        create:
+          implementation: keepalived.keepalived.operations.create
+          inputs:
+            fabric_env:
+              default: {}
+
+  keepalived.nodes.master:
+    derived_from: keepalived.nodes.KeepAlived
+    properties:
+      state:
+        default: MASTER
+      priority:
+        default: 150
+
+  keepalived.nodes.slave:
+    derived_from: keepalived.nodes.KeepAlived
+    properties:
+      state:
+        default: SLAVE
+      priority:
+        default: 100
