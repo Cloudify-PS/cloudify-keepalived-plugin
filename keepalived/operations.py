@@ -43,3 +43,9 @@ def create(fabric_env, **kwargs):
 def stop(fabric_env, **kwargs):
     with settings(**fabric_env):
         run('sudo service keepalived stop')
+
+
+def delete(fabric_env, **kwargs):
+    with settings(**fabric_env):
+        run('sudo yum remove keepalived -y')
+

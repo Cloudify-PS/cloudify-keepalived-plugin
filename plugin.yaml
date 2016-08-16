@@ -43,6 +43,11 @@ node_types:
           inputs:
             fabric_env:
               default: {}
+        delete:
+          implementation: keepalived.keepalived.operations.delete
+          inputs:
+            fabric_env:
+              default: {}
 
   keepalived.nodes.master:
     derived_from: keepalived.nodes.KeepAlived
