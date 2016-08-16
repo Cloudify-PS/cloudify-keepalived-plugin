@@ -8,7 +8,7 @@ setup(
     # Do not use underscores in the plugin name.
     name='cloudify-keepalived-plugin',
 
-    version='1.0',
+    version='1.1',
     description='ENTER-DESCRIPTION-HERE',
 
     # This must correspond to the actual packages in the plugin.

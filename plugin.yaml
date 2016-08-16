@@ -7,7 +7,7 @@ tosca_definitions_version: cloudify_dsl_1_3
 plugins:
   keepalived:
     executor: central_deployment_agent
-    source: https://github.com/Cloudify-PS/cloudify-keepalived-plugin/archive/1.0.zip
+    source: https://github.com/Cloudify-PS/cloudify-keepalived-plugin/archive/1.1.zip
 
 node_types:
 
