@@ -19,9 +19,6 @@ node_types:
       internal_ip:
         type: string
         default: { get_input: internal_ip }
-      broadcast:
-        type: string
-        default: { get_input: keepalived_broadcast }
       group:
         type: string
         default: { get_input: group }
